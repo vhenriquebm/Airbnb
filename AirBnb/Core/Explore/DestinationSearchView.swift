@@ -13,23 +13,38 @@ struct DestinationSearchView: View {
     @State private var selectedOption: DestinationSearchOptions = .location
     @State private var startDate = Date()
     @State private var endDate = Date()
+    @State private var numberOfGuests = 0
     
     var body: some View {
-        
         VStack {
-            Button(action: {
-                withAnimation(.snappy) {
-                    show.toggle()
+            HStack {
+                Button(action: {
+                    withAnimation(.snappy) {
+                        show.toggle()
+                    }
+                    
+                }, label: {
+                    Image(systemName: "xmark.circle")
+                        .imageScale(.large)
+                        .foregroundColor(.black)
+                })
+                
+                Spacer()
+                
+                if !destination.isEmpty {
+                    Button("Clear") {
+                        destination = ""
+                    }
                 }
                 
-            }, label: {
-                Image(systemName: "xmark.circle")
-                    .imageScale(.large)
-                    .foregroundColor(.black)
-            })
-            
-            
-            
+                
+            }
+            .foregroundColor(.black)
+            .font(.subheadline)
+            .fontWeight(.semibold)
+            .padding()
+        }
+        VStack {
             
             VStack(alignment: .leading) {
                 
@@ -39,9 +54,7 @@ struct DestinationSearchView: View {
                         Text("Where to?")
                             .font(.title2)
                             .fontWeight(.semibold)
-                        
                     }
-                    
                     
                     HStack {
                         Image(systemName: "magnifyingglass")
@@ -57,34 +70,28 @@ struct DestinationSearchView: View {
                                 .foregroundColor(Color(.systemGray4))
                         }
                 } else {
-                    AddInfoView(title: "Where", description: " Destination")
+                    AddInfoView(title: "Where", description: " Add Destination")
                         .onTapGesture {
-                        selectedOption = .dates
-                    }
-                }
-             
-            }
-            
-          
-            
-        }.padding()
-            .frame(height: selectedOption == .location ? 120 : 65)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-            .onTapGesture {
-                withAnimation(.snappy) {
-                    selectedOption = .location
-
+                            selectedOption = .dates
+                        }
                 }
             }
-        
+            
+        }
+        .padding()
+        .frame(height: selectedOption == .location ? 120 : 65)
+        .modifier(CustomModifier())
+        .onTapGesture {
+            withAnimation(.snappy) {
+                selectedOption = .location
+                
+            }
+        }
         
         VStack(alignment: .leading) {
             
             if selectedOption == .dates {
-               Text("When's your trip?")
+                Text("When's your trip?")
                     .font(.title2)
                     .fontWeight(.semibold)
                 
@@ -94,65 +101,58 @@ struct DestinationSearchView: View {
                     Divider()
                     
                     DatePicker("To", selection: $startDate, displayedComponents: .date)
-
                     
                 }
-                
+                .foregroundStyle(.gray)
+                .font(.subheadline)
+                .fontWeight(.semibold)
                 
             } else {
                 AddInfoView(title: "When", description: "Add dates")
             }
-        }.padding()
-            .frame(height: selectedOption == .dates ? 120 : 65)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        }
+        .padding()
+        .frame(height: selectedOption == .dates ? 145 : 65)
+        .modifier(CustomModifier())
             .onTapGesture {
                 withAnimation(.snappy) {
                     selectedOption = .dates
-
+                    
                 }
-        }
+            }
         
-        
-        VStack {
+        VStack(alignment: .leading) {
             
             if selectedOption == .guests {
                 
-                HStack {
-                    Text("Show expanded view")
-                    Spacer()
-
+                Text("Who's coming?")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                
+                Stepper {
+                    Text(" \(numberOfGuests) Adults")
+                } onIncrement: {
+                    numberOfGuests += 1
+                }  onDecrement: {
+                    guard numberOfGuests > 0 else { return }
+                    numberOfGuests -= 1
                 }
-
+                
             } else {
                 AddInfoView(title: "Who", description: "Add guests")
-
             }
-            
-        }.padding()
-            .frame(height: selectedOption == .guests ? 120 : 65)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).onTapGesture {
-                withAnimation(.snappy) {
-                    selectedOption = .guests
-
-                }
+        }
+        .padding()
+        .frame(height: selectedOption == .guests ? 120 : 65)
+        .modifier(CustomModifier())
+        .onTapGesture {
+            withAnimation(.snappy) {
+                selectedOption = .guests
+                
+            }
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        Spacer()
     }
 }
 
@@ -162,3 +162,13 @@ struct DestinationSearchView: View {
 
 
 
+struct CustomModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding()
+            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+    }
+}
