@@ -11,6 +11,8 @@ struct DestinationSearchView: View {
     @Binding var show: Bool
     @State private var destination = ""
     @State private var selectedOption: DestinationSearchOptions = .location
+    @State private var startDate = Date()
+    @State private var endDate = Date()
     
     var body: some View {
         
@@ -70,7 +72,8 @@ struct DestinationSearchView: View {
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding()
-            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).onTapGesture {
+            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .onTapGesture {
                 withAnimation(.snappy) {
                     selectedOption = .location
 
@@ -78,14 +81,24 @@ struct DestinationSearchView: View {
             }
         
         
-        VStack {
+        VStack(alignment: .leading) {
             
             if selectedOption == .dates {
-                HStack {
-                    Text("Show expanded view")
-                    Spacer()
+               Text("When's your trip?")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                VStack {
+                    DatePicker("From", selection: $startDate, displayedComponents: .date)
+                    
+                    Divider()
+                    
+                    DatePicker("To", selection: $startDate, displayedComponents: .date)
 
+                    
                 }
+                
+                
             } else {
                 AddInfoView(title: "When", description: "Add dates")
             }
