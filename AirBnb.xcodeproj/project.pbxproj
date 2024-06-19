@@ -25,6 +25,8 @@
 		42A7971E2C0A82CB001C22C1 /* DestinationSearchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7971D2C0A82CB001C22C1 /* DestinationSearchOptions.swift */; };
 		42FF807E2C22514200074070 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF807D2C22514200074070 /* Listing.swift */; };
 		42FF80802C22565B00074070 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF807F2C22565B00074070 /* DeveloperPreview.swift */; };
+		42FF80892C238BD900074070 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF80882C238BD900074070 /* ExploreViewModel.swift */; };
+		42FF808B2C238C2A00074070 /* ExploreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FF808A2C238C2A00074070 /* ExploreService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		42A7971D2C0A82CB001C22C1 /* DestinationSearchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchOptions.swift; sourceTree = "<group>"; };
 		42FF807D2C22514200074070 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		42FF807F2C22565B00074070 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
+		42FF80882C238BD900074070 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		42FF808A2C238C2A00074070 /* ExploreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +136,6 @@
 				4243133D2BBE02C200BEE02C /* Map */,
 				4243133C2BBE02BC00BEE02C /* Listings */,
 				4243133B2BBE02B700BEE02C /* Explore */,
-				422FC27D2BBF56CC00DFC2D0 /* SearchBar.swift */,
 				42A7971A2C0A8177001C22C1 /* AddInfoView.swift */,
 				42FF807F2C22565B00074070 /* DeveloperPreview.swift */,
 			);
@@ -142,8 +145,9 @@
 		4243133B2BBE02B700BEE02C /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				424313412BBE03A300BEE02C /* ExploreView.swift */,
-				42A797182C0A78DB001C22C1 /* DestinationSearchView.swift */,
+				42FF80872C238B9C00074070 /* ViewModel */,
+				42FF80862C238B9700074070 /* Service */,
+				42FF80852C238B9200074070 /* View */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -219,6 +223,32 @@
 				424313432BBE04A000BEE02C /* ListingItemView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		42FF80852C238B9200074070 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				42A797182C0A78DB001C22C1 /* DestinationSearchView.swift */,
+				424313412BBE03A300BEE02C /* ExploreView.swift */,
+				422FC27D2BBF56CC00DFC2D0 /* SearchBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		42FF80862C238B9700074070 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				42FF808A2C238C2A00074070 /* ExploreService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		42FF80872C238B9C00074070 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				42FF80882C238BD900074070 /* ExploreViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +328,10 @@
 				425AB69D2C1909DE009264EF /* MainTabView.swift in Sources */,
 				422FC27E2BBF56CC00DFC2D0 /* SearchBar.swift in Sources */,
 				424313422BBE03A300BEE02C /* ExploreView.swift in Sources */,
+				42FF808B2C238C2A00074070 /* ExploreService.swift in Sources */,
 				42FF807E2C22514200074070 /* Listing.swift in Sources */,
 				422FC2802BBF5E8800DFC2D0 /* ListingDetailView.swift in Sources */,
+				42FF80892C238BD900074070 /* ExploreViewModel.swift in Sources */,
 				42FF80802C22565B00074070 /* DeveloperPreview.swift in Sources */,
 				42A7971B2C0A8177001C22C1 /* AddInfoView.swift in Sources */,
 				422FC2832BBF5F4700DFC2D0 /* ImagesCarousel.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Listing: Identifiable, Codable {
+struct Listing: Identifiable, Codable, Hashable {
     let id: String
     let ownerUid: String
     let ownerName: String
@@ -26,7 +26,8 @@ struct Listing: Identifiable, Codable {
     var rating: Double
     var features: [ListingFeatures]
     var amenities: [ListingAmenities]
-    var type: [ListingType]
+    var type: ListingType
+    var imageUrls: [String]
 }
 
 enum ListingFeatures: Int, Codable, Identifiable, Hashable {
